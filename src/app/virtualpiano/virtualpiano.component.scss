@@ -1,0 +1,18 @@
+.whitekey {
+    min-height: 175px;
+    position: relative;
+    float:left;
+    background-image: linear-gradient(to top, #E0E0E0, #FAFAFA)
+}
+
+.blackkey {
+    background-image: linear-gradient(to top, #212121, #424242);
+    min-height: 110px;
+    position: absolute;
+    z-index: 2;
+}
+
+.whitekey:active, .blackkey:active {
+    background-image: linear-gradient(to top, #1976d2, #64b5f6)
+}
+
