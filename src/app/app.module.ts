@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import  { jquery } from 'jquery';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import * as tonejs from 'tone';
 import * as vexflow from 'vexflow';
-
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
