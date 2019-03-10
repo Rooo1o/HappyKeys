@@ -24,7 +24,8 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { "glob": "**/*", "input": "node_modules/instruments/samples/piano/", "output": "/samples/piano/" }
             ],
             "styles": [
               "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
@@ -40,7 +41,11 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/chart.js/dist/Chart.js",
-              "node_modules/hammerjs/hammer.min.js"
+              "node_modules/hammerjs/hammer.min.js",
+              "node_modules/instruments/external-js/NexusUI.js",
+              "node_modules/instruments/external-js/nprogress.js",
+              "node_modules/instruments/external-js/Tone.js",
+              "node_modules/instruments/Instruments.js"
             ],
             "es5BrowserSupport": true
           },

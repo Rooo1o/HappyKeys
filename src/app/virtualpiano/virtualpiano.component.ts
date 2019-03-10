@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import * as Tone from 'tone';
-import * as StartAudioContext from 'startaudiocontext';
-import { StaticSymbolResolver } from '@angular/compiler';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core'
+import * as Tone from 'tone'
+import { StaticSymbolResolver } from '@angular/compiler'
+declare var SampleLibrary: any;
 
 @Component({
   selector: 'app-virtualpiano',
@@ -11,10 +11,19 @@ import { StaticSymbolResolver } from '@angular/compiler';
 })
 
 export class VirtualpianoComponent implements OnInit {
-  public synth;
-  public MidiNoten;
+  public synth
+  public MidiNoten
+  public GespeeldeNoten
+  public samples
+  public instruments
   constructor() {
-    this.synth = new Tone.Synth().toMaster();
+  
+    this.synth = SampleLibrary.load({
+      instruments: "piano", 
+      ext: ".ogg"
+    }).toMaster()
+
+    console.log(window.location.href)
     this.MidiNoten = {
       21: 'a0', 22: 'a#0', 23: 'b0',
       24: 'c1', 25: 'c#1', 26: 'd1', 27: 'd#1', 28: 'e1', 29: 'f1', 30: 'f#1', 31: 'g1', 32: 'g#1', 33: 'a1', 34: 'a#1', 35: 'b1',
@@ -26,87 +35,83 @@ export class VirtualpianoComponent implements OnInit {
       96: 'c7', 97: 'c#7', 98: 'd7', 99: 'd#7', 100: 'e7', 101: 'f7', 102: 'f#7', 103: 'g7', 104: 'g#7', 105: 'a7', 106: 'a#7', 107: 'b7',
       108: 'c8'
     }
+    this.GespeeldeNoten = new Array<string>()
   }
 
   ngOnInit() {
-    this.generateKeyboard();
-    this.generatePiano();
-    this.generateXylophone();
+
+    this.generateKeyboard()
+    this.generatePiano()
+    this.generateXylophone()
   }
 
   generatePiano() {
-    let div = document.getElementById('piano');
-    let breedteWittetoets = (100 / 52);
-    let offset = breedteWittetoets;
+    let div = document.getElementById('piano')
+    let breedteWittetoets = (100 / 52)
+    let offset = breedteWittetoets
 
     for (let t = 21; t <= 108; t++) {
-      let noot = this.MidiNoten[t];
+      let noot = this.MidiNoten[t]
       if (!(noot.charAt(1) === '#')) {
-        div.appendChild(this.maakToets(noot, breedteWittetoets));
+        div.appendChild(this.maakToets(noot, breedteWittetoets))
       } else {
-        div.appendChild(this.maakToets(noot, breedteWittetoets, offset));
-        if (noot != 'a#0' && (noot.charAt(0) === 'd' || noot.charAt(0) === 'a')) {
-          offset += breedteWittetoets * 2;
-        } else {
-          offset += breedteWittetoets;
-        }
+        div.appendChild(this.maakToets(noot, breedteWittetoets, offset))
+        noot != 'a#0' && (noot.charAt(0) === 'd' || noot.charAt(0) === 'a') ? offset += breedteWittetoets * 2 : offset += breedteWittetoets
       }
     }
   }
 
   generateKeyboard() {
-    let div = document.getElementById('keyboard');
-    let breedteWittetoets = parseFloat((100 / 35).toFixed(10));
-    let offset = 0;
-    for(let k = 36; k <= 95; k++){
-      let noot = this.MidiNoten[k];
-      console.log(noot);
+    let div = document.getElementById('keyboard')
+    let breedteWittetoets = parseFloat((100 / 35).toFixed(10))
+    let offset = 0
+    for (let k = 36; k <= 95; k++) {
+      let noot = this.MidiNoten[k]
+      console.log(noot)
       if (!(noot.charAt(1) === '#')) {
-        div.appendChild(this.maakToets(noot, breedteWittetoets));
+        div.appendChild(this.maakToets(noot, breedteWittetoets))
       } else {
-        div.appendChild(this.maakToets(noot, breedteWittetoets, offset));
-        if (noot.charAt(0) === 'd' || noot.charAt(0) === 'a') {
-          offset += breedteWittetoets * 2;
-        } else {
-          offset += breedteWittetoets;
-        }
+        div.appendChild(this.maakToets(noot, breedteWittetoets, offset))
+        noot.charAt(0) === 'd' || noot.charAt(0) === 'a' ? offset += breedteWittetoets * 2 : offset += breedteWittetoets
       }
     }
   }
 
   generateXylophone() {
-    let divxylophone = document.getElementById('xylophone');
-    const whitekeyWidth = parseFloat((100 / 7).toFixed(10));
-    let blackkeyWidth = (whitekeyWidth * 0.6);
-    const rainbowcolours = ["red", "orange", "yellow", "green", "blue", "purple", "purple"];
+    let divxylophone = document.getElementById('xylophone')
+    const whitekeyWidth = parseFloat((100 / 7).toFixed(10))
+    const rainbowcolours = ["red", "orange", "yellow", "green", "blue", "purple", "purple"]
     for (let k = 0; k < 7; k++) { //7 'witte' toetsen
-      let pianokey = document.createElement('div');
-      pianokey.classList.add('border', 'border-dark', 'rounded-bottom', 'd-inline-block', rainbowcolours[k], k === 6 ? 'accent-3' : null);
-      pianokey.style.minWidth = whitekeyWidth + '%';
-      pianokey.style.minHeight = "150px";
-      divxylophone.appendChild(pianokey);
+      let pianokey = document.createElement('div')
+      pianokey.classList.add('border', 'border-dark', 'rounded-bottom', 'd-inline-block', rainbowcolours[k], k === 6 ? 'accent-3' : null)
+      pianokey.style.minWidth = whitekeyWidth + '%'
+      pianokey.style.minHeight = "150px"
+      divxylophone.appendChild(pianokey)
     }
   }
 
   maakToets(noot: string, breedteWittetoets: number, offset?: number) {
-    let toets = document.createElement('div');
-    toets.classList.add('border', 'border-dark');
+    let toets = document.createElement('div')
+    toets.classList.add('border', 'border-dark')
     if (!(noot.charAt(1) === '#')) { //witte toets
-      toets.classList.add('rounded-bottom', 'd-inline-block', 'whitekey');
-      toets.style.minWidth = breedteWittetoets + '%';
+      toets.classList.add('rounded-bottom', 'whitekey')
+      toets.style.minWidth = breedteWittetoets + '%'
     } else { // zwarte toets
-      noot === 'a#0' ? offset = 0 : offset = offset;
-      toets.classList.add('border-top-0', 'blackkey');
-      toets.style.minWidth = (breedteWittetoets * 0.7) + '%';
-      toets.style.marginLeft = offset + breedteWittetoets * 0.65 + '%';
+      noot === 'a#0' ? offset = 0 : offset = offset
+      toets.classList.add('border-top-0', 'blackkey')
+      toets.style.minWidth = (breedteWittetoets * 0.7) + '%'
+      toets.style.marginLeft = offset + breedteWittetoets * 0.65 + '%'
     }
     toets.addEventListener('mousedown', (e: Event) => {
-      this.synth.context.resume().then(() => {
-        this.synth.triggerAttack(noot);
-        console.log(noot);
-      })
-    });
-    toets.addEventListener('mouseup', (e: Event) => this.synth.triggerRelease());
-    return toets;
+      this.synth.triggerAttack(noot)
+      console.log(noot)
+    })
+
+    toets.addEventListener('mouseup', (e: Event) => {
+      this.synth.triggerRelease()
+      this.GespeeldeNoten.push(noot)
+      console.log(this.GespeeldeNoten)
+    })
+    return toets
   }
 }

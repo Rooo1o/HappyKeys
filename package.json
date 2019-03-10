@@ -33,6 +33,7 @@
     "rxjs": "~6.3.3",
     "startaudiocontext": "^1.2.1",
     "tone": "^13.4.9",
+    "tone-piano": "0.0.12",
     "tslib": "^1.9.0",
     "vexflow": "^1.2.88",
     "zone.js": "~0.8.26"
