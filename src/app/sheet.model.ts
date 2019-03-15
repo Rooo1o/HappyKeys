@@ -7,7 +7,7 @@ export class Sheet {
 }
 
 enum Type {
-    Xyolofoon,
+    Xylofoon,
     Keyboard,
     Piano
 }
