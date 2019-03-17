@@ -1,0 +1,14 @@
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\bin\Debug\netcoreapp2.2\Backend.deps.json
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\bin\Debug\netcoreapp2.2\Backend.runtimeconfig.json
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\bin\Debug\netcoreapp2.2\Backend.runtimeconfig.dev.json
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\bin\Debug\netcoreapp2.2\Backend.dll
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\bin\Debug\netcoreapp2.2\Backend.pdb
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\obj\Debug\netcoreapp2.2\Backend.csprojAssemblyReference.cache
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\obj\Debug\netcoreapp2.2\Backend.csproj.CoreCompileInputs.cache
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\obj\Debug\netcoreapp2.2\Backend.RazorAssemblyInfo.cache
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\obj\Debug\netcoreapp2.2\Backend.RazorAssemblyInfo.cs
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\obj\Debug\netcoreapp2.2\Backend.AssemblyInfoInputs.cache
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\obj\Debug\netcoreapp2.2\Backend.AssemblyInfo.cs
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\obj\Debug\netcoreapp2.2\Backend.RazorTargetAssemblyInfo.cache
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\obj\Debug\netcoreapp2.2\Backend.dll
+C:\Users\robin\Documents\GitHub\web4-2019\HappyKeys\Backend\Backend\obj\Debug\netcoreapp2.2\Backend.pdb
