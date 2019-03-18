@@ -22,28 +22,16 @@ namespace Backend.Data.Repositories
     {
       _gebruikers.Add(gebruiker);
     }
-
-    public void Delete(Gebruiker gebruiker)
+    public Gebruiker GetByEmail(string emailadres)
     {
-      _gebruikers.Remove(gebruiker);
-    }
-
-    public Gebruiker GetById(int id)
-    {
-      return _gebruikers.SingleOrDefault(g => g.Id == id);
+      return _gebruikers.SingleOrDefault(g => g.Emailadres == emailadres);
     }
 
     public void SaveChanges()
     {
       _context.SaveChanges();
     }
-
-    public bool TryGetGebruiker(int id, out Gebruiker gebruiker)
-    {
-      gebruiker = _context.Gebruikers.FirstOrDefault(g => g.Id == id);
-      return gebruiker != null;
-    }
-
+    //Wachtwoord wijzigen? 
     public void Update(Gebruiker gebruiker)
     {
       _context.Update(gebruiker);

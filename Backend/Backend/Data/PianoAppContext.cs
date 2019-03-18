@@ -1,4 +1,5 @@
 using Backend.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Backend.Data
 {
-  public class GebruikerContext: DbContext
+  public class GebruikerContext: IdentityDbContext
   {
     public GebruikerContext(DbContextOptions<GebruikerContext> options) : base(options)
     {
@@ -21,11 +22,8 @@ namespace Backend.Data
         .Property(g => g.Voornaam).IsRequired().HasMaxLength(50);
       modelBuilder.Entity<Gebruiker>().Property(g => g.Naam).IsRequired().HasMaxLength(50);
       modelBuilder.Entity<Gebruiker>().Property(g => g.Emailadres).IsRequired().HasMaxLength(50);
-      modelBuilder.Entity<Gebruiker>().Property(g => g.Wachtwoord).IsRequired().HasMaxLength(15);
-
-      modelBuilder.Entity<Gebruiker>().HasData(
-        new Gebruiker { Id = 1, Naam = "Panné", Voornaam = "Simon", Emailadres = "simonpann@hotmail.com", Wachtwoord= "Donia" }
-      );
+      modelBuilder.Entity<Gebruiker>().Property(g => g.Wachtwoord).IsRequired().HasMaxLength(25);
+      
     }
 
     public DbSet<Gebruiker> Gebruikers { get; set; }

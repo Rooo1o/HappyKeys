@@ -25,7 +25,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              { "glob": "**/*", "input": "node_modules/instruments/samples/piano/", "output": "/samples/piano/" }
+              { "glob": "**/*", "input": "node_modules/instruments/samples/piano/", "output": "/samples/piano/" },
+              "src/assets/backgrounds/bgpiano.jpg"
             ],
             "styles": [
               "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",

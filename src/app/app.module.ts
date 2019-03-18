@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { MDBBootstrapModule } from 'angular-bootstrap-md'
-import * as toneInstruments from 'node_modules/instruments/Instruments.js'
 import * as tonejs from 'tone'
 import * as vexflow from 'vexflow'
 
@@ -12,7 +11,7 @@ import { VexflowcontentComponent } from './bladmuziekcanvas/bladmuziekcanvas.com
 import { virtuelepianoComponent } from './virtuelepiano/virtuelepiano.component'
 import { TonesynthesizerComponent } from './tonesynthesizer/tonesynthesizer.component';
 import { LoginComponent } from './login/login.component';
-import { RegistreerComponent } from './registreer/registreer.component'
+import { RegistreerComponent } from './registreer/registreer.component';
 
 @NgModule({
   declarations: [
