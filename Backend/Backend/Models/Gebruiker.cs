@@ -14,10 +14,7 @@ namespace Backend.Models
     public string Emailadres { get; set; }
     public string Wachtwoord { get; set; }
 
-    internal Gebruiker()
-    {
-
-    }
+    internal Gebruiker() { }
 
     public Gebruiker(string naam, string voornaam, string emailadres, string wachtwoord)
     {

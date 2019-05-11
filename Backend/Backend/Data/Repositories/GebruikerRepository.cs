@@ -10,10 +10,10 @@ namespace Backend.Data.Repositories
   public class GebruikerRepository : IGebruikersRepository
   {
 
-    private readonly GebruikerContext _context;
+    private readonly VirturoosjeContext _context;
     private readonly DbSet<Gebruiker> _gebruikers;
 
-    public GebruikerRepository(GebruikerContext dbContext)
+    public GebruikerRepository(VirturoosjeContext dbContext)
     {
       _context = dbContext;
       _gebruikers = dbContext.Gebruikers;

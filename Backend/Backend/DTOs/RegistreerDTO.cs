@@ -13,7 +13,6 @@ namespace RecipeApi.DTOs
             public string LastName { get; set; }
 
             [Required]
-            [MinLength(8)]
             [Compare("Wachtwoord")]
             public string WachtwoordBevestiging { get; set; }
     }
