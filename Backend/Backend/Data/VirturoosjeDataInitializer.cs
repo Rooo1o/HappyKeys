@@ -25,34 +25,17 @@ namespace Backend.Data.Repositories
       if (_dbContext.Database.EnsureCreated())
       {
         //databank seeden
-        Gebruiker gebruiker = new Gebruiker {
-          Gebruikersnaam = "Lord Superior",
-          Emailadres = "robinroos1@hotmail.com",
-          Naam = "Roos",
-          Voornaam = "Robin",
-          Wachtwoord = "W@chtwoord1"
-        };
-        _dbContext.Gebruikers.Add(gebruiker);
-        await CreateUser(gebruiker.Emailadres, gebruiker.Wachtwoord);
-
-        Gebruiker gebruiker2 = new Gebruiker
-        {
-          Gebruikersnaam = "Notenolie",
-          Emailadres = "simonpann@gmail.com",
-          Naam = "Panné",
-          Voornaam = "Simon",
-          Wachtwoord = "Robin"
-        };
-        _dbContext.Gebruikers.Add(gebruiker2);
-        await CreateUser(gebruiker2.Emailadres, gebruiker2.Wachtwoord);
+        await CreateUser("robinroos1@hotmail.com", "LordSuperior", "W@chtwoord1");
+        await CreateUser("simonpann@gmail.com", "Notenolie", "Robin");
         _dbContext.SaveChanges();
       }
     }
 
-    private async Task CreateUser(string email, string password)
+    private async Task CreateUser(string email, string gebruikersnaam, string password)
     {
-      var user = new IdentityUser { UserName = email, Email = email };
-      await _userManager.CreateAsync(user, password);
+      var user = new IdentityUser { UserName = gebruikersnaam, Email = email };
+      var gemaakteUser = await _userManager.CreateAsync(user, password);
+      var x = 5;
     }
 
   }

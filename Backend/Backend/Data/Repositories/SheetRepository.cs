@@ -27,16 +27,20 @@ namespace Backend.Data.Repositories
       return _sheets.Include(s => s.Noten);
     }
 
-    public Sheet GetBy(int id)
+    public Sheet GetById(int id)
     {
-      return _sheets.Include(s => s.Noten).SingleOrDefault(s => s.Id == id);
+      return _sheets.SingleOrDefault(s => s.Id == id);
     }
+    
 
-    public Sheet GetBy(string naam)
+    public IEnumerable<Sheet> GetBy(string naam = null, string auteur = null)
     {
+      var sheets = _sheets.Include(s => s.Noten).AsQueryable();
       if (!string.IsNullOrEmpty(naam))
-        return _sheets.Where(s => s.Naam.ToLower().Equals(naam.ToLower())).SingleOrDefault();
-      return null;
+        sheets = sheets.Where(s => s.Naam.IndexOf(naam, System.StringComparison.OrdinalIgnoreCase) >= 0);
+      if (!string.IsNullOrEmpty(auteur))
+        sheets = sheets.Where(s => s.Auteur.Equals(auteur, System.StringComparison.OrdinalIgnoreCase));
+      return sheets.OrderBy(s => s.Naam).ToList();
     }
 
     public void SaveChanges()

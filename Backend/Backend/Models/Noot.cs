@@ -7,19 +7,15 @@ namespace Backend.Models
 {
   public class Noot
   {
-    //milliseconden
     public int Id { get; set; }
-    public int Lengte { get; set; }
-    public Sleutel Sleutel { get; set; }
-    public int GecorrigeerdeLengte { get; set; }
     public int Midiwaarde { get; set; }
-    public String Tonewaarde { get; set; }
-    public String Vexflowwaarde { get; set; }
+    public int Tijdstip { get; set; }
     internal Noot() { }
-  }
- public enum Sleutel
-  {
-    Viool,
-    Bass
+
+    public Noot(int midiwaarde, int tijdstip)
+    {
+      Midiwaarde = midiwaarde;
+      Tijdstip = tijdstip;
+    }
   }
 }

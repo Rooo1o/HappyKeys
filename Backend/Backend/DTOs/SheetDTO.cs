@@ -4,19 +4,18 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Backend.Models
+namespace Backend.DTOs
 {
-  public class Sheet
+  public class SheetDTO
   {
     public int Id { get; set; }
     public String Naam { get; set; }
     public String Auteur { get; set; }
-    public ICollection<Noot> Noten { get; set; }
-    internal Sheet() {
-      this.Noten = new Collection<Noot>();
+    public ICollection<NootDTO> Noten { get; set; }
+
+    public SheetDTO()
+    {
+      Noten = new Collection<NootDTO>();
     }
-
-    public void VoegNootToe(Noot noot) => Noten.Add(noot);
   }
-
 }

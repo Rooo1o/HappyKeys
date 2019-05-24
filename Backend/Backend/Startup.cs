@@ -40,6 +40,7 @@ namespace Backend
 
       services.AddScoped<VirturoosjeDataInitializer>();
       services.AddScoped<IGebruikersRepository, GebruikerRepository>();
+      services.AddScoped<ISheetRepository, SheetRepository>();
 
       services.AddOpenApiDocument(c =>
       {
@@ -99,7 +100,7 @@ namespace Backend
         options.User.AllowedUserNameCharacters =
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
         options.User.RequireUniqueEmail = true;
-        
+
       });
     }
 
@@ -121,14 +122,15 @@ namespace Backend
         // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
       }
-      
+
       app.UseHttpsRedirection();
 
       app.UseCors(builder => builder
-    .AllowAnyOrigin()
-    .AllowAnyMethod()
-    .AllowAnyHeader()
-    .AllowCredentials());
+       .AllowAnyOrigin()
+       .AllowAnyMethod()
+       .AllowAnyHeader()
+       .AllowCredentials()
+      );
       app.UseMvc();
       app.UseSwaggerUi3();
       app.UseSwagger();
