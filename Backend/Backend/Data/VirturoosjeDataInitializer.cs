@@ -35,7 +35,6 @@ namespace Backend.Data.Repositories
     {
       var user = new IdentityUser { UserName = gebruikersnaam, Email = email };
       var gemaakteUser = await _userManager.CreateAsync(user, password);
-      var x = 5;
     }
 
   }

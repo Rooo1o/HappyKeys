@@ -21,7 +21,6 @@ namespace Backend.Controllers
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly IGebruikersRepository _gebruikersRepository;
-    private readonly ISheetRepository _sheetRepository;
     private readonly IConfiguration _config;
 
     public AccountController(
@@ -54,8 +53,7 @@ namespace Backend.Controllers
       {
         user = await _userManager.FindByEmailAsync(model.EmailOfGebruikersnaam);
       }
-
-      var x = 5;
+      
       if (user != null)
       {
         var result = await _signInManager.CheckPasswordSignInAsync(user, model.Wachtwoord, false);
@@ -120,9 +118,6 @@ namespace Backend.Controllers
       var gebruiker = await _gebruikersRepository.GetByGebruikersnaam(gebruikersnaam);
       return gebruiker == null;
     }
-
-
-
 
 
     private String GetToken(IdentityUser user)

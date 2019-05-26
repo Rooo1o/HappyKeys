@@ -13408,11 +13408,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\robin\\Documents\\GitHub\\web4-2019\\HappyKeys\\Backend\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\robin\\Documents\\GitHub\\web4-2019\\HappyKeys\\src\\Backend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\robin\\Documents\\GitHub\\web4-2019\\HappyKeys\\Backend\\Backend\\Backend.csproj",
+      "projectPath": "C:\\Users\\robin\\Documents\\GitHub\\web4-2019\\HappyKeys\\src\\Backend\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\robin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\robin\\Documents\\GitHub\\web4-2019\\HappyKeys\\Backend\\Backend\\obj\\",
+      "outputPath": "C:\\Users\\robin\\Documents\\GitHub\\web4-2019\\HappyKeys\\src\\Backend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

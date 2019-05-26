@@ -24,15 +24,23 @@ namespace Backend.Data.Repositories
       return await _gebruikers.Include(g => g.Sheets).ThenInclude(s => s.Noten).SingleOrDefaultAsync(g => g.Gebruikersnaam == gebruikersnaam);
     }
 
-    public ICollection<Sheet> GetAllSheets()
+    public IEnumerable<Sheet> GetAllSheets()
     {
-      Collection<Sheet> sheets = new Collection<Sheet>();
-      foreach(var gebruiker in _gebruikers.Include(g => g.Sheets).ThenInclude(s => s.Noten))
+      var sheets = _gebruikers.SelectMany(g => g.Sheets).Include(s => s.Noten);
+      return _gebruikers.SelectMany(g => g.Sheets);
+    }
+
+    public IEnumerable<Sheet> GetBy(string naam = null, string auteur = null)
+    {
+      var sheets = GetAllSheets();
+      if (!string.IsNullOrEmpty(naam))
       {
-        foreach(var sheet in gebruiker.Sheets)
-        {
-          sheets.Add(sheet);
-        }
+        sheets = sheets.Where(s => s.Naam.IndexOf(naam, System.StringComparison.OrdinalIgnoreCase) >= 0);
+      }
+
+      if (!string.IsNullOrEmpty(auteur))
+      {
+        sheets = sheets.Where(s => s.Auteur.Equals(auteur, System.StringComparison.OrdinalIgnoreCase));
       }
       return sheets;
     }
@@ -42,7 +50,12 @@ namespace Backend.Data.Repositories
       Gebruiker gebruiker = _gebruikers.Include(s => s.Sheets).ThenInclude(s => s.Noten).SingleOrDefault(g => g.Sheets.Contains(sheet));
       return gebruiker.VerwijderSheet(sheet);
     }
-    
+
+    public Sheet GetSheetById(int id)
+    {
+      return GetAllSheets().SingleOrDefault(s => s.Id == id);
+    }
+
 
     public void Add(Gebruiker gebruiker)
     {

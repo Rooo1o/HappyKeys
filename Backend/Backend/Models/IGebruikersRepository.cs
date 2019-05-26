@@ -10,7 +10,8 @@ namespace Backend.Models
     Task<Gebruiker> GetByGebruikersnaam(string gebruikersnaam);
     Gebruiker GetByEmail(string email);
     Sheet DeleteSheet(Sheet sheet);
-    ICollection<Sheet> GetAllSheets();
+    Sheet GetSheetById(int id);
+    IEnumerable<Sheet> GetAllSheets();
     void Add(Gebruiker gebruiker);
     void Update(Gebruiker gebruiker);
     void SaveChanges();

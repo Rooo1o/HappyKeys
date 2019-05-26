@@ -40,7 +40,6 @@ namespace Backend
 
       services.AddScoped<VirturoosjeDataInitializer>();
       services.AddScoped<IGebruikersRepository, GebruikerRepository>();
-      services.AddScoped<ISheetRepository, SheetRepository>();
 
       services.AddOpenApiDocument(c =>
       {
