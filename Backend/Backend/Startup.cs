@@ -19,6 +19,7 @@ namespace Backend
 {
   public class Startup
   {
+
     public Startup(IConfiguration configuration)
     {
       Configuration = configuration;
@@ -29,23 +30,55 @@ namespace Backend
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+
+
+      services.AddCors();
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-      services.AddDbContext<GebruikerContext>(options =>
+      services.AddDbContext<VirturoosjeContext>(options =>
       options.UseSqlServer(Configuration.GetConnectionString("GebruikerContext")));
 
-      services.AddScoped<PianoAppDataInitializer>();
+      services.AddScoped<VirturoosjeDataInitializer>();
       services.AddScoped<IGebruikersRepository, GebruikerRepository>();
 
       services.AddOpenApiDocument(c =>
       {
         c.DocumentName = "apidocs";
-        c.Title = "Gebruiker API";
+        c.Title = "HappyKeys API";
         c.Version = "v1";
-        c.Description = "The GebruikerAPI documentation description.";
+        c.Description = "De API voor de frontend webapplicatie HappyKeys van Robin Roos.";
+        c.DocumentProcessors.Add(new SecurityDefinitionAppender("JWT Token", new SwaggerSecurityScheme
+        {
+          Type = SwaggerSecuritySchemeType.ApiKey,
+          Name = "Authorization",
+          In = SwaggerSecurityApiKeyLocation.Header,
+          Description = "Copy 'Bearer' + valid JWT token into field"
+        }
+        ));
+        c.OperationProcessors.Add(new OperationSecurityScopeProcessor("JWT Token"));
       });
 
-      services.AddIdentity<IdentityUser, IdentityRole>(cfg => cfg.User.RequireUniqueEmail = true).AddEntityFrameworkStores<GebruikerContext>();
+
+
+      services.AddAuthentication(x =>
+      {
+        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+      }).AddJwtBearer(x =>
+      {
+        x.RequireHttpsMetadata = false;
+        x.SaveToken = true;
+        x.TokenValidationParameters = new TokenValidationParameters
+        {
+          ValidateIssuerSigningKey = true,
+          IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"])),
+          ValidateIssuer = false,
+          ValidateAudience = false,
+          RequireExpirationTime = true //Ensure token hasn't expired
+        };
+      });
+
+      services.AddIdentity<IdentityUser, IdentityRole>(cfg => cfg.User.RequireUniqueEmail = true).AddEntityFrameworkStores<VirturoosjeContext>();
 
       services.Configure<IdentityOptions>(options =>
       {
@@ -54,7 +87,7 @@ namespace Backend
         options.Password.RequireLowercase = false;
         options.Password.RequireNonAlphanumeric = false;
         options.Password.RequireUppercase = false;
-        options.Password.RequiredLength = 6;
+        options.Password.RequiredLength = 5;
         options.Password.RequiredUniqueChars = 0;
 
         // Lockout settings.
@@ -66,13 +99,10 @@ namespace Backend
         options.User.AllowedUserNameCharacters =
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
         options.User.RequireUniqueEmail = true;
+
       });
-
-
-
-      services.AddCors(options => options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin()));
-
     }
+
 
     private object IdentityRole(Func<object, object> p)
     {
@@ -80,7 +110,7 @@ namespace Backend
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env, PianoAppDataInitializer gebruikerDataInitializer)
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env, VirturoosjeDataInitializer gebruikerDataInitializer)
     {
       if (env.IsDevelopment())
       {
@@ -93,10 +123,17 @@ namespace Backend
       }
 
       app.UseHttpsRedirection();
+
+      app.UseCors(builder => builder
+       .AllowAnyOrigin()
+       .AllowAnyMethod()
+       .AllowAnyHeader()
+       .AllowCredentials()
+      );
       app.UseMvc();
       app.UseSwaggerUi3();
       app.UseSwagger();
-
+      app.UseAuthentication();
       gebruikerDataInitializer.InitializeData().Wait();
     }
   }

@@ -5,8 +5,7 @@ namespace RecipeApi.DTOs
     public class LoginDTO
         {
             [Required]
-            [EmailAddress]
-            public string Email { get; set; }
+            public string EmailOfGebruikersnaam { get; set; }
 
             [Required]
             public string Wachtwoord { get; set; }

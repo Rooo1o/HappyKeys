@@ -1,4 +1,3 @@
-using Backend.DTOs;
 using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,10 +13,9 @@ using System.Threading.Tasks;
 
 namespace Backend.Controllers
 {
-  [ApiConventionType(typeof(DefaultApiConventions))]
-  [Produces("application/json")]
   [Route("api/[controller]")]
   [ApiController]
+  [ApiConventionType(typeof(DefaultApiConventions))]
   public class AccountController : ControllerBase
   {
     private readonly SignInManager<IdentityUser> _signInManager;
@@ -27,7 +25,8 @@ namespace Backend.Controllers
 
     public AccountController(
           SignInManager<IdentityUser> signInManager,
-          UserManager<IdentityUser> userManager, IGebruikersRepository context,
+          UserManager<IdentityUser> userManager,
+          IGebruikersRepository context,
           IConfiguration config)
     {
       _signInManager = signInManager;
@@ -45,8 +44,16 @@ namespace Backend.Controllers
     [HttpPost]
     public async Task<ActionResult<String>> CreateToken(LoginDTO model)
     {
-      var user = await _userManager.FindByNameAsync(model.Email);
-
+      IdentityUser user;
+      if (!(model.EmailOfGebruikersnaam.Contains("@")))
+      {
+        user = await _userManager.FindByNameAsync(model.EmailOfGebruikersnaam);
+      }
+      else
+      {
+        user = await _userManager.FindByEmailAsync(model.EmailOfGebruikersnaam);
+      }
+      
       if (user != null)
       {
         var result = await _signInManager.CheckPasswordSignInAsync(user, model.Wachtwoord, false);
@@ -59,7 +66,6 @@ namespace Backend.Controllers
       }
       return BadRequest();
     }
-
 
 
     [HttpGet("{email}")]
@@ -76,11 +82,15 @@ namespace Backend.Controllers
 
 
     [AllowAnonymous]
-    [HttpPost("register")]
-    public async Task<ActionResult<String>> Register(RegistreerDTO model)
+    [HttpPost("registreer")]
+    public async Task<ActionResult<String>> Registreer(RegistreerDTO model)
     {
-      IdentityUser user = new IdentityUser { UserName = model.Email, Email = model.Email };
-      Gebruiker customer = new Gebruiker { Emailadres = model.Email, Voornaam = model.FirstName, Naam = model.LastName };
+      if (!(model.Wachtwoord == model.WachtwoordHerhalen))
+      {
+        return BadRequest();
+      }
+      IdentityUser user = new IdentityUser { UserName = model.Gebruikersnaam, Email = model.Emailadres };
+      Gebruiker customer = new Gebruiker { Gebruikersnaam = model.Gebruikersnaam, Emailadres = model.Emailadres, Voornaam = model.Voornaam, Naam = model.Achternaam, Wachtwoord = model.Wachtwoord };
       var result = await _userManager.CreateAsync(user, model.Wachtwoord);
 
       if (result.Succeeded)
@@ -93,7 +103,21 @@ namespace Backend.Controllers
       return BadRequest();
     }
 
+    [AllowAnonymous]
+    [HttpGet("controleeremailadres")]
+    public async Task<ActionResult<Boolean>> ControleerEmailadres(string emailadres)
+    {
+      var gebruiker = await _userManager.FindByNameAsync(emailadres);
+      return gebruiker == null;
+    }
 
+    [AllowAnonymous]
+    [HttpGet("controleergebruikersnaam")]
+    public async Task<ActionResult<Boolean>> ControleerGebruikersnaam(string gebruikersnaam)
+    {
+      var gebruiker = await _gebruikersRepository.GetByGebruikersnaam(gebruikersnaam);
+      return gebruiker == null;
+    }
 
 
     private String GetToken(IdentityUser user)
