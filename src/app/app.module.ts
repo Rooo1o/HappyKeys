@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
-import { NgModule } from '@angular/core'
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core'
 import { MDBBootstrapModule } from 'angular-bootstrap-md'
-import * as tonejs from 'tone'
+import * as tonejs from 'tone';
 import * as vexflow from 'vexflow'
 
 import { AppComponent } from './app.component'
@@ -26,6 +26,10 @@ import { RegistreerComponent } from './registreer/registreer.component';
   ],
   imports: [
     BrowserModule, MDBBootstrapModule
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -47,8 +47,7 @@
               "node_modules/instruments/external-js/nprogress.js",
               "node_modules/instruments/external-js/Tone.js",
               "node_modules/instruments/Instruments.js"
-            ],
-            "es5BrowserSupport": true
+            ]
           },
           "configurations": {
             "production": {
