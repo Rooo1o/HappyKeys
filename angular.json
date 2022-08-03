@@ -154,5 +154,8 @@
       }
     }
   },
-  "defaultProject": "123Piano"
+  "defaultProject": "123Piano",
+  "cli": {
+    "analytics": "01f4f357-b530-4efd-a5de-c051314054d6"
+  }
 }

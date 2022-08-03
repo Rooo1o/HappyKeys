@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Backend",
+    "\\Backend\\Backend",
+    "\\Backend\\Backend\\Controllers",
+    "\\Backend\\Backend\\DTOs",
+    "\\src"
   ],
+  "SelectedNode": "\\Backend\\Backend.sln",
   "PreviewInSolutionExplorer": false
 }
