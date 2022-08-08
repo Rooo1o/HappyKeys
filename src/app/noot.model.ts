@@ -1,4 +1,3 @@
-import { isNumeric } from 'rxjs/src/internal/util/isNumeric';
 import { Nootconverter } from './nootconverter';
 
 export class Noot {
@@ -8,14 +7,12 @@ export class Noot {
     private gecorrigeerdeLengte: number
     private midiwaarde
     private tonewaarde
-    private vexflowwaarde
     constructor(
         private _noot: any,
     ) {
         let noten = Nootconverter.get(_noot);
         this.midiwaarde = noten[0]
         this.tonewaarde = noten[1]
-        this.vexflowwaarde = noten[2]
         return this /* factory method */
     }
     setLengte(lengte: number) {
@@ -42,10 +39,6 @@ export class Noot {
 
     getTonewaarde(): string {
         return this.tonewaarde
-    }
-
-    getVexflowwaarde(): string {
-        return this.vexflowwaarde
     }
 }
 

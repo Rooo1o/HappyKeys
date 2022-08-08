@@ -7,7 +7,6 @@ import * as vexflow from 'vexflow'
 import { AppComponent } from './app.component'
 import { NavbarComponent } from './navbar/navbar.component'
 import { FooterComponent } from './footer/footer.component'
-import { VexflowcontentComponent } from './bladmuziekcanvas/bladmuziekcanvas.component'
 import { virtuelepianoComponent } from './virtuelepiano/virtuelepiano.component'
 import { TonesynthesizerComponent } from './tonesynthesizer/tonesynthesizer.component';
 import { LoginComponent } from './login/login.component';
@@ -18,7 +17,6 @@ import { RegistreerComponent } from './registreer/registreer.component';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    VexflowcontentComponent,
     virtuelepianoComponent,
     TonesynthesizerComponent,
     LoginComponent,

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 import * as Tone from 'tone'
-import { StaticSymbolResolver } from '@angular/compiler'
 import { Noot } from '../noot.model';
 declare var SampleLibrary: any;
 
@@ -14,7 +13,7 @@ declare var SampleLibrary: any;
 export class virtuelepianoComponent implements OnInit {
   public synth
   public noten
-  public GespeeldeNoten
+  public gespeeldeNoten
   public samples
   public instruments
   constructor() {
@@ -28,7 +27,7 @@ export class virtuelepianoComponent implements OnInit {
     for(let midiwaarde = 21; midiwaarde < 108; midiwaarde++){
       this.noten.push(new Noot(midiwaarde))
     }
-    this.GespeeldeNoten = new Array<string>()
+    this.gespeeldeNoten = new Array<string>()
   }
 
   ngOnInit() {
@@ -37,6 +36,7 @@ export class virtuelepianoComponent implements OnInit {
     this.generateXylophone()
   }
 
+  // NO TOUCHING
   generatePiano() {
     let div = document.getElementById('piano')
     let breedteWittetoets = (100 / 52)
@@ -53,6 +53,7 @@ export class virtuelepianoComponent implements OnInit {
     }
   }
 
+  // DO NOT TOUCH
   generateKeyboard() {
     let div = document.getElementById('keyboard')
     let breedteWittetoets = parseFloat((100 / 35).toFixed(10))
@@ -81,6 +82,7 @@ export class virtuelepianoComponent implements OnInit {
     }
   }
 
+  // NEVER EVER TOUCH
   maakToets(noot: string, breedteWittetoets: number, offset?: number) {
     let toets = document.createElement('div')
     toets.classList.add('border', 'border-dark')
@@ -99,7 +101,7 @@ export class virtuelepianoComponent implements OnInit {
 
     toets.addEventListener('mouseup', (e: Event) => {
       this.synth.triggerRelease()
-      this.GespeeldeNoten.push(noot)
+      this.gespeeldeNoten.push(noot)
     })
     return toets
   }
