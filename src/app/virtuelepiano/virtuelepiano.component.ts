@@ -16,8 +16,8 @@ export class virtuelepianoComponent implements OnInit {
   public gespeeldeNoten
   public samples
   public instruments
+
   constructor() {
-  
     this.synth = SampleLibrary.load({
       instruments: "piano", 
       ext: ".mp3"
@@ -33,7 +33,7 @@ export class virtuelepianoComponent implements OnInit {
   ngOnInit() {
     this.generateKeyboard()
     this.generatePiano()
-    this.generateXylophone()
+ //   this.generateXylophone()
   }
 
   // NO TOUCHING
@@ -69,6 +69,7 @@ export class virtuelepianoComponent implements OnInit {
     }
   }
 
+  // deprecated
   generateXylophone() {
     let divxylophone = document.getElementById('xylophone')
     const whitekeyWidth = parseFloat((100 / 7).toFixed(10))

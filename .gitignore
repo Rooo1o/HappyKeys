@@ -10,6 +10,7 @@
 # dependencies
 /node_modules/*
 !/node_modules/instruments/
+!/node_modules/instruments/*
 
 # profiling files
 chrome-profiler-events.json
