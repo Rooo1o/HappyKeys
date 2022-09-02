@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "330a95c6-b60d-4ed1-9b8d-c22c28b9c01f": {
+      "ProjectGuid": "330a95c6-b60d-4ed1-9b8d-c22c28b9c01f",
+      "DisplayName": "Backend",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

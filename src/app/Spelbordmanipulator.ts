@@ -11,11 +11,11 @@ export class Spelbordmanipulator {
         return spelbord;
     }
 
-    static draaiBlokje(spelbord: boolean[][], richting: Tetromino.Richting, blokje: Tetromino): boolean[][] {
+    static draaiBlokje(spelbord: boolean[][], blokje: Tetromino): boolean[][] {
         return [];
     }
 
-    static beweegBlokje(spelbord: boolean[][], richting: Tetromino.Richting): boolean[][] {
+    static beweegBlokje(spelbord: boolean[][]): boolean[][] {
         return [];
     }
     
