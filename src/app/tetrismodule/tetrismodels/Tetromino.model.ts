@@ -3,7 +3,7 @@ export abstract class Tetromino {
   //  protected huidigeRotatie: boolean[][];
     protected huidigeRotatieTeller: number = 0;
 
-    protected roteerLinks(): Boolean[][]{
+    public roteerLinks(): Boolean[][]{
         if (this.huidigeRotatieTeller === 0) {
             this.huidigeRotatieTeller = this.rotaties.length;
         }
@@ -11,7 +11,7 @@ export abstract class Tetromino {
         return this.rotaties[this.huidigeRotatieTeller];
     }
 
-    private roteerRechts(): Boolean[][]{
+    public roteerRechts(): Boolean[][]{
         if(this.huidigeRotatieTeller === this.rotaties.length-1){
             this.huidigeRotatieTeller = -1;
         }

@@ -5,13 +5,13 @@ import * as tonejs from 'tone';
 import { AppComponent } from './app.component'
 import { NavbarComponent } from './navbar/navbar.component'
 import { FooterComponent } from './footer/footer.component'
-import { virtuelepianoComponent } from './virtuelepiano/virtuelepiano.component'
-import { TonesynthesizerComponent } from './tonesynthesizer/tonesynthesizer.component';
+import { virtuelepianoComponent } from './pianomodule/virtuelepiano/virtuelepiano.component'
+import { TonesynthesizerComponent } from './pianomodule/tonesynthesizer/tonesynthesizer.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './registermodule/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TetrominocomponentComponent } from './tetromino/tetromino.component';
-import { TetriscanvascomponentComponent } from './tetriscanvas/tetriscanvas.component';
+import { TetrominocomponentComponent } from './tetrismodule/tetromino.component';
+import { TetriscanvascomponentComponent } from './tetrismodule/tetriscanvas/tetriscanvas.component';
 
 @NgModule({
   declarations: [

@@ -1,4 +1,4 @@
-import { Tetromino } from "../tetrominoes/Tetromino.model";
+import { Tetromino } from "./tetrismodels/Tetromino.model";
 
 export class Spelbordmanipulator {
     static maakSpelbord(verticaal: Number, horizontaal: Number): boolean[][] {
@@ -11,9 +11,15 @@ export class Spelbordmanipulator {
         return spelbord;
     }
 
-    static draaiBlokje(spelbord: boolean[][], blokje: Tetromino): boolean[][] {
-        return [];
+    static draaiBlokjeLinks(spelbord: boolean[][], blokje: Tetromino): Boolean[][] {
+        return blokje.roteerLinks();
     }
+
+    static draaiBlokjeRechts(spelbord: boolean[][], blokje: Tetromino): Boolean[][] {
+        return blokje.roteerRechts();
+    }
+
+
 
     static beweegBlokje(spelbord: boolean[][]): boolean[][] {
         return [];

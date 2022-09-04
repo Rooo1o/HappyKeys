@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 import * as Tone from 'tone'
-import { Noot } from '../noot.model';
+import { Noot } from '../pianomodels/noot.model';
 declare var SampleLibrary: any;
 
 @Component({
