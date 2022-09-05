@@ -7,27 +7,32 @@ import { NavbarComponent } from './navbar/navbar.component'
 import { FooterComponent } from './footer/footer.component'
 import { virtuelepianoComponent } from './pianomodule/virtuelepiano/virtuelepiano.component'
 import { TonesynthesizerComponent } from './pianomodule/tonesynthesizer/tonesynthesizer.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './registermodule/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TetrominocomponentComponent } from './tetrismodule/tetromino.component';
 import { TetriscanvascomponentComponent } from './tetrismodule/tetriscanvas/tetriscanvas.component';
+import { FormsModule } from '@angular/forms';
+import { LoginModule } from './login/login.module';
+import { RegistreerModule } from './registreer/registreer.module';
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    LoginModule,
+    RegistreerModule,
+    AppRoutingModule,
+  ],
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
     virtuelepianoComponent,
     TonesynthesizerComponent,
-    LoginComponent,
-    RegisterComponent,
     TetrominocomponentComponent,
-    TetriscanvascomponentComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule
+    TetriscanvascomponentComponent,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

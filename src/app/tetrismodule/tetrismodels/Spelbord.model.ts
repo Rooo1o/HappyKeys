@@ -1,5 +1,5 @@
 import { Spelbordmanipulator } from "./Spelbordmanipulator";
-import { Tetromino } from "./tetrismodels/Tetromino.model";
+import { Tetromino } from "./Tetromino.model";
 
 export class Spelbord {
     private _speelveld: boolean[][];

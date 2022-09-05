@@ -1,4 +1,4 @@
-import { Tetromino } from "./tetrismodels/Tetromino.model";
+import { Tetromino } from "./Tetromino.model";
 
 export class Spelbordmanipulator {
     static maakSpelbord(verticaal: Number, horizontaal: Number): boolean[][] {
