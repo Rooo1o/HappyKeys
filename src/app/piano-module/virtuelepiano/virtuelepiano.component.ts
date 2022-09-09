@@ -10,7 +10,7 @@ declare var SampleLibrary: any;
   encapsulation: ViewEncapsulation.None
 })
 
-export class virtuelepianoComponent implements OnInit {
+export class VirtuelepianoComponent implements OnInit {
   public synth
   public noten
   public gespeeldeNoten
