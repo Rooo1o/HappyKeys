@@ -11,6 +11,12 @@
 /node_modules/*
 !/node_modules/instruments/
 !/node_modules/instruments/*
+!/node_modules/instruments/external-js/
+!/node_modules/instruments/external-js/*
+!/node_modules/instruments/samples/
+!/node_modules/instruments/samples/*
+!/node_modules/instruments/samples/piano/
+!/node_modules/instruments/samples/piano/*
 
 # profiling files
 chrome-profiler-events.json
