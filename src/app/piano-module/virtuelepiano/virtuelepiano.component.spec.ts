@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { virtuelepianoComponent } from './virtuelepiano.component';
+import { VirtuelepianoComponent } from './virtuelepiano.component';
 
 describe('virtuelepianoComponent', () => {
-  let component: virtuelepianoComponent;
-  let fixture: ComponentFixture<virtuelepianoComponent>;
+  let component: VirtuelepianoComponent;
+  let fixture: ComponentFixture<VirtuelepianoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ virtuelepianoComponent ]
+      declarations: [ VirtuelepianoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(virtuelepianoComponent);
+    fixture = TestBed.createComponent(VirtuelepianoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

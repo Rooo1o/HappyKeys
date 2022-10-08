@@ -31,9 +31,9 @@ export class VirtuelepianoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.generateKeyboard()
+  //  this.generateKeyboard()
     this.generatePiano()
- //   this.generateXylophone()
+  //  this.generateXylophone()
   }
 
   // NO TOUCHING
@@ -84,7 +84,7 @@ export class VirtuelepianoComponent implements OnInit {
   }
 
   // NEVER EVER TOUCH
-  maakToets(noot: string, breedteWittetoets: number, offset?: number) {
+  maakToets2(noot: string, breedteWittetoets: number, offset?: number) {
     let toets = document.createElement('div')
     toets.classList.add('border', 'border-dark')
     if (!(noot.charAt(1) === '#')) { //witte toets
@@ -105,5 +105,42 @@ export class VirtuelepianoComponent implements OnInit {
       this.gespeeldeNoten.push(noot)
     })
     return toets
+  }
+
+   // NEVER EVER TOUCH
+   maakToets(noot: string, breedteWittetoets: number, offset?: number) {
+    let toets = document.createElement('div')
+    if (!(noot.charAt(1) === '#')) { //witte toets
+      toets = this.maakWitteToets(noot, breedteWittetoets, offset)
+    } else { // zwarte toets
+      noot === 'a#0' ? offset = 0 : offset = offset
+      toets.classList.add('border-top-0', 'blackkey', 'border-dark')
+      toets.style.minWidth = (breedteWittetoets * 0.7) + '%'
+      toets.style.marginLeft = offset + breedteWittetoets * 0.65 + '%'
+    }
+
+    this.geefToetsZijnToon(toets, noot)
+    return toets
+  }
+
+  maakWitteToets(noot: string, breedteWitteToets: number, offset?: number){
+    let toets = document.createElement('div')
+    toets.classList.add('border-dark', 'rounded-bottom', 'whitekey')
+    toets.style.minWidth = breedteWitteToets + '%'
+    return toets
+  }
+
+  maakZwarteToets(noot: string, breedteWitteToets: number, offset?: number){
+
+  }
+
+  geefToetsZijnToon(toets, noot){
+    toets.addEventListener('mousedown', (e: Event) => {
+      this.synth.triggerAttack(noot)
+    })
+    toets.addEventListener('mouseup', (e: Event) => {
+      this.synth.triggerRelease()
+      this.gespeeldeNoten.push(noot)
+    })
   }
 }

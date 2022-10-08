@@ -12,6 +12,9 @@ import { VirtuelepianoComponent } from './virtuelepiano/virtuelepiano.component'
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    VirtuelepianoComponent
   ]
 })
 export class PianoModule { }
